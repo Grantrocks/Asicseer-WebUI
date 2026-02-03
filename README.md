@@ -1,6 +1,12 @@
 # Asicseer-WebUI
 A simple asicseer webui interface.
 
+There are 3 variables you need to change based on your setup,
+1 is the coindeskAPIKEY, this fetches realtime api data from coindesk. Make an account to get the key.
+2 is the bitaxe IP, this fetches network data from the bitaxe api because asicseer doesent have that inside the logs for some reason.
+3 is the logs directory, every setup is different so make sure to set this to your asicseer logs path.
+
+
 Please run the following to install dependencies:
 `pip install flask`
 
