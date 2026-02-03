@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mining Pool - Home</title>
+</head>
+<body>
+    <h1>Pool Information</h1>
+    <div>
+        <p>Last Update: {{ lastUpdate}}</p>
+        <p>Uptime: {{ uptime }} Days</p>
+        <p>Total Active BCH Addresses: {{ users }}</p>
+        <p>Miners: {{workers}}</p>
+        <p>Idle Miners: {{idleWorkers}}</p>
+        <p>Pool Hashrate: {{hashrate1hr}}</p>
+        <p>7 Day Pool Hashrate: {{ hashrate7d}}</p>
+        <p>Shares Submitted Per Second: {{ sharespersecond }}</p>
+	    <p>Blocks Found: {{blocksFound}}</p>
+        <p>Block Reward: {{blockReward}} BCH ~ ${{bchRewardValue}}</p>
+        <p>Block Height: {{blockHeight}}</p>
+        <p>Block Scriptsig: {{scriptSig}}</p>
+        <p>Network Difficulty: {{networkDiff}}</p>
+        </p>
+    </div>
+    <h1>Active Addresses</h1>
+    <table border="1">
+        <tr>
+            <th>Address</th>
+            <th>Last Share</th>
+            <th>Workers</th>
+            <th>Shares Submitted</th>
+            <th>Hashrate 1HR</th>
+            <th>Hashrate 1 Day</th>
+            <th>Hashrate 7 Days</th>
+            <th>Highest Difficulty Found</th>
+            <th>Luck</th>
+        </tr>
+        {% for worker in workerJson %}
+            {% for address in worker.keys(): %}
+                <tr>
+                    <td>{{ address }}</td>
+                    <td>{{ worker[address].lastshare }}</td>
+                    <td>{{ worker[address].workers }}</td>
+                    <td>{{ worker[address].shares }}</td>
+                    <td>{{ worker[address].hashrate1hr }}h/s</td>
+                    <td>{{ worker[address].hashrate1d }}h/s</td>
+                    <td>{{ worker[address].hashrate7d }}h/s</td>
+                    <td>{{ worker[address].bestshare }}</td>
+                    <td>{{ worker[address].luck }}%</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+	</table>
+    <h1>Active Devices</h1>
+	<table border="1">
+		<tr>
+			<th>Worker Name</th>
+			<th>Hashrate</th>
+			<th>Shares</th>
+			<th>Highest Difficulty</th>
+			<th>Updated</th>
+		</tr>
+		{% for slaveWorker in workerDevices %}
+			<tr>
+				<td>{{slaveWorker.workername}}</td>
+				<td>{{slaveWorker.hashrate5m}}h/s</td>
+				<td>{{slaveWorker.shares}}</td>
+				<td>{{slaveWorker.bestshare}}</td>
+				<td>{{slaveWorker.lastshare}}</td>
+			</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>
